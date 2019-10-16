@@ -2,10 +2,13 @@
 $dir = '/var/protected';
 function files($loc){
 	foreach(new DirectoryIterator($loc) as $file)
-		if($file->isFile())
-			print $file->getPathname()."\n";
-		else if ($file != '..' && $file != '.')
+		if($file->isFile()){
+			print "<li>".$file->getFilename()."</li>\n";
+        }else if ($file != '..' && $file != '.'){
+            print "<li><span>".$file->getFilename()."</span><ul class=\"nested\">";
 			files($file->getPathname());
+            print "</ul></li>";
+        }
 }
 ?>
 
@@ -42,5 +45,5 @@ function files($loc){
 			<button type="submit" class="btn cancel" onclick="closeLoginForm()">Close</button>
 		</form>
 	</div>
-	<div title="Files" class="fileViewer"><ul id="treeFile"><?= echo files($dir) ?></ul></div>
+	<div title="Files" class="fileViewer"><ul id="treeFile"><?= files($dir); ?></ul></div>
 </body></html>
