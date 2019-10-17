@@ -1,4 +1,5 @@
 <?php
+session_start();
 $dir = '/var/protected';
 function files($loc){
 	foreach(new DirectoryIterator($loc) as $file)
@@ -10,7 +11,10 @@ print "<li>".$file->getFilename()."</li>\n";
             print "</ul></li>";
         }
 }
-
+function testSessionId(){
+	if( isset($_SESSION['sesID'])){return 1;}else{return 0;}
+}
+var_dump($_SESSION);
 ?>
 
 <html><head>
@@ -24,7 +28,6 @@ print "<li>".$file->getFilename()."</li>\n";
 		function closeLoginForm() {
 			document.getElementById("loginForm").style.display = "none";
 		}
-
         var toggler = document.getElementsByClassName("caret");
         var i;
 		function labels(){
@@ -38,7 +41,16 @@ print "<li>".$file->getFilename()."</li>\n";
 	</script>
 </head>
 <header>
-	<h1>Basher's Group</h1><button onclick="openLoginForm()" href="indexVFMS.js">Login</button><button>Sign Up</button><button style="display: none">Log Out</button><button>Calculator</button>
+	<h1>Basher's Group</h1>
+<?php
+ if(testSessionId() == 0){?>
+ 	<button onclick="openLoginForm()">Login</button><button>Sign Up</button><?php 
+ }else{?>
+	<button onclick="window.location.href='logout.php'">Logout</button>
+
+<?php }
+?>
+<button>Calculator</button>
 </header>
 
 <body>
@@ -56,5 +68,5 @@ print "<li>".$file->getFilename()."</li>\n";
 			<button type="submit" class="btn cancel" onclick="closeLoginForm()">Close</button>
 		</form>
 	</div>
-	<div title="Files" class="fileViewer"><ul id="treeFile" onclick="labels()"><?= files($dir); print "test"; ?></ul></div>
+	<div title="Files" class="fileViewer"><?php if(testSessionId() !=0) { ?><ul id="treeFile" onclick="labels()"><?= files($dir); ?></ul><?php }else{?> <p> You can not access the file system while you are not logged in! </p><?php }?></div>
 </body></html>

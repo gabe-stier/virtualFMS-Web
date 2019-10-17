@@ -1,34 +1,46 @@
-<?php
-    include 'db.php';
-if(!empty($_POST)){
-	session_start();
-    $usr = $_POST['username'];
-    $loginPwd = $_POST['loginPwd'];
-//    $conn = dbconnect();
- $conn = new mysqli('localhost','vfmsUSER','?uvl=1Crod','VFMS');
-	//print $conn;  
-$stmt = "SELECT idUSER,password FROM USER WHERE username=?";
-    $sql = mysqli_prepare($conn, $stmt);
-	mysqli_stmt_bind_param($sql,"s",$usr);
-    mysqli_stmt_execute($sql);
-    mysqli_stmt_store_result($sql);
-    if (mysqli_stmt_num_rows($sql) == 1) {
-        mysqli_stmt_bind_result($sql,$uid,$pwd);
-        if(mysqli_stmt_fetch($sql)){
-            if(password_verify($loginPwd,$pwd)){
-                $_SESSION['result']=true;
-		print "You in";
-}            else{
-                $_SESSION['result']=false;
-		print"bitch <br>";
-		print $loginPwd ."<br>".$pwd;
-}
+<?php include 'db.php'; 
+ if (!empty($_POST)) {
+    session_start();
+  if (isset($_POST['username']) && isset($_POST['loginPwd'])) {
+	print "test1";
+        $usr = $_POST['username'];
+        $loginPwd = $_POST['loginPwd'];
+        $conn = new mysqli('localhost', 'vfmsUSER', '?uvl=1Crod', 'VFMS');
+        $stmt = "SELECT idUSER,password FROM USER WHERE username=?";
+        $sql = mysqli_prepare($conn, $stmt);
+        mysqli_stmt_bind_param($sql, "s", $usr);
+        mysqli_stmt_execute($sql);
+        mysqli_stmt_store_result($sql);
+        if (mysqli_stmt_num_rows($sql) == 1) {
+            mysqli_stmt_bind_result($sql, $uid, $pwd);
+            if (mysqli_stmt_fetch($sql)) {
+                if (password_verify($loginPwd, $pwd)) {
+                    $_SESSION['result'] = true;
+                    $_SESSION['resultCode'] = 1;
+                    $_SESSION['sesID'] = $uid;
+		    header('location: userPerms.php');
+                } else {
+                    session_destroy();
+                    $_POST['result'] = false;
+                    $_POST['resultCode'] = 10;
+		    header('location: indexVFMS.php');
+                }
+            }
+        } else {
+            session_destroy();
+            $_POST['result'] = false;
+            if (mysqli_stmt_num_rows($sql) > 1) $_POST['resultCode'] = 26;
+            else $_POST['resultCode'] = 25;
+		header('location: indexVFMS.php');
         }
+	mysqli_close($conn);
     } else {
-        $_SESSION['result'] = false;
-	print "hi";
+        $_POST['result'] = false;
+        $_POST['resultCode'] = 20;
+	header('location: indexVFMS.php');
     }
-     dbclose($conn);
+//mysqli_close($conn);
 }
+//mysqli_close($conn); 
+//header('location: indexVFMS.php');
 ?>
-
