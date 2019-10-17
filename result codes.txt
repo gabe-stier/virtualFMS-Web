@@ -1,1 +1,5 @@
-10: $_POST empty
+1: Login Successful
+5: Password does not match
+20: $_POST empty
+25: User not found
+26: More than one user with username has been returned.
