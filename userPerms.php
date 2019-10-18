@@ -13,12 +13,14 @@
 		$_SESSION['download'] = $down;
 		$_SESSION['upload'] = $up;
 	}else{
-//sleep(100);
 $_SESSION['billy'] = "error";
 }
 	mysqli_close($conn);
-header('location: indexVFMS.php');
-
-
-
-?>
+?><html>
+<script type='text/javascript'>
+window.onunload = refreshParent;
+function refreshParent() {
+        window.opener.location.reload();
+    }
+window.close();
+</script></html>

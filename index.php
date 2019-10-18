@@ -1,10 +1,17 @@
 <?php
 session_start();
 $dir = '/var/protected';
+$me = "<script>alert('test')</script>";
 function files($loc){
+$me = "<script>alert(\'test\')</script>";
 	foreach(new DirectoryIterator($loc) as $file)
 		if($file->isFile()){
-print "<li>".$file->getFilename()."</li>\n";
+print "<li>".$file->getFilename()."\t".
+	"<form action='readfile.php' method='post'><input type='hidden' name='filename' value='". 
+  $file->getFilename()."'><input type='hidden' name='read' value='".
+  $file->getPathname() ."'><button type='submit'>Read</button></form> ".
+//	."<button>Download</button>
+"</li>\n";
         }else if ($file != '..' && $file != '.'){
             print "<li><span class=\"caret\">".$file->getFilename()."</span><ul class=\"nested\">";
 			files($file->getPathname());
@@ -21,13 +28,12 @@ var_dump($_SESSION);
 	<title>Virtual File Management System</title>
 	<link rel="stylesheet" href="styles/indexVFMS.css">
 	<script type="text/javascript">
-		function openLoginForm() {
-			document.getElementById("loginForm").style.display = "block";
-		}
-
-		function closeLoginForm() {
-			document.getElementById("loginForm").style.display = "none";
-		}
+	function readFile(){
+		window.open('readfile.php','_blank','height=400,width=400');
+	}
+	function openWindow(){
+		window.open('login.html','_blank','height=400,width=400');
+	}
         var toggler = document.getElementsByClassName("caret");
         var i;
 		function labels(){
@@ -44,7 +50,7 @@ var_dump($_SESSION);
 	<h1>Basher's Group</h1>
 <?php
  if(testSessionId() == 0){?>
- 	<button onclick="openLoginForm()">Login</button><button>Sign Up</button><?php 
+ 	<button onclick="openWindow()">Login</button><button>Sign Up</button><?php 
  }else{?>
 	<button onclick="window.location.href='logout.php'">Logout</button>
 
@@ -54,19 +60,12 @@ var_dump($_SESSION);
 </header>
 
 <body>
-	<div class="form-popup" id="loginForm">
-		<form action="login.php" class="form-container" method='post'>
-			<h1>Login</h1>
-
-			<label for="email"><b>Username</b></label>
-			<input type="text" placeholder="Enter Username" name="username" required>
-
-			<label for="pwd"><b>Password</b></label>
-			<input type="password" placeholder="Enter Password" name="loginPwd" required>
-
-			<button type="submit" class="btn">Login</button>
-			<button type="submit" class="btn cancel" onclick="closeLoginForm()">Close</button>
-		</form>
-	</div>
-	<div title="Files" class="fileViewer"><?php if(testSessionId() !=0) { ?><ul id="treeFile" onclick="labels()"><?= files($dir); ?></ul><?php }else{?> <p> You can not access the file system while you are not logged in! </p><?php }?></div>
+<div title="Files" class="fileViewer">
+	<?php if(testSessionId() !=0) { ?>
+		<ul id="treeFile" onclick="labels()">
+			<?= files($dir); ?>
+		</ul>
+	<?php }else{?>
+		<p> You can not access the file system while you are not logged in! </p>
+	<?php }?></div>
 </body></html>

@@ -23,7 +23,7 @@
                     session_destroy();
                     $_POST['result'] = false;
                     $_POST['resultCode'] = 10;
-		    header('location: indexVFMS.php');
+		    header('location: index.php');
                 }
             }
         } else {
@@ -31,16 +31,15 @@
             $_POST['result'] = false;
             if (mysqli_stmt_num_rows($sql) > 1) $_POST['resultCode'] = 26;
             else $_POST['resultCode'] = 25;
-		header('location: indexVFMS.php');
+		header('location: index.php');
         }
 	mysqli_close($conn);
     } else {
         $_POST['result'] = false;
         $_POST['resultCode'] = 20;
-	header('location: indexVFMS.php');
+	header('location: index.php');
     }
-//mysqli_close($conn);
 }
-//mysqli_close($conn); 
-//header('location: indexVFMS.php');
+
+
 ?>
