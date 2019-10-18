@@ -1,25 +1,25 @@
-<?php
+﻿<?php
 session_start();
 $dir = '/var/protected';
 $me = "<script>alert('test')</script>";
-function files($loc){
-$me = "<script>alert(\'test\')</script>";
-	foreach(new DirectoryIterator($loc) as $file)
-		if($file->isFile()){
-print "<li>".$file->getFilename()."\t".
-	"<form action='readfile.php' method='post'><input type='hidden' name='filename' value='". 
-  $file->getFilename()."'><input type='hidden' name='read' value='".
-  $file->getPathname() ."'><button type='submit'>Read</button></form> ".
-//	."<button>Download</button>
-"</li>\n";
-        }else if ($file != '..' && $file != '.'){
-            print "<li><span class=\"caret\">".$file->getFilename()."</span><ul class=\"nested\">";
-			files($file->getPathname());
-            print "</ul></li>";
-        }
+function files($loc) {
+    $me = "<script>alert(\'test\')</script>";
+    foreach (new DirectoryIterator($loc) as $file) if ($file->isFile()) {
+        print "<li>" . $file->getFilename() . "\t" . "<form action='download.php' method='post'><input type='hidden' name='filename' value='" . $file->getFilename() . "'><input type='hidden' name='file' value='" . $file->getPathname() . "'><button type='submit'>Download</button></form> " .
+        //	."<button>Download</button>
+        "</li>\n";
+    } else if ($file != '..' && $file != '.') {
+        print "<li><span class=\"caret\">" . $file->getFilename() . "</span><ul class=\"nested\">";
+        files($file->getPathname());
+        print "</ul></li>";
+    }
 }
-function testSessionId(){
-	if( isset($_SESSION['sesID'])){return 1;}else{return 0;}
+function testSessionId() {
+    if (isset($_SESSION['sesID'])) {
+        return 1;
+    } else {
+        return 0;
+    }
 }
 var_dump($_SESSION);
 ?>
@@ -31,8 +31,11 @@ var_dump($_SESSION);
 	function readFile(){
 		window.open('readfile.php','_blank','height=400,width=400');
 	}
-	function openWindow(){
+	function openLoginWindow(){
 		window.open('login.html','_blank','height=400,width=400');
+	}
+	function openSignUpWindow(){
+		window.open('signup.html','_blank','height=400,width=400');
 	}
         var toggler = document.getElementsByClassName("caret");
         var i;
@@ -49,23 +52,26 @@ var_dump($_SESSION);
 <header>
 	<h1>Basher's Group</h1>
 <?php
- if(testSessionId() == 0){?>
- 	<button onclick="openWindow()">Login</button><button>Sign Up</button><?php 
- }else{?>
+if (testSessionId() == 0) { ?>
+ 	<button onclick="openLoginWindow()">Login</button><button onclick="openSignUpWindow()">Sign Up</button><?php
+} else { ?>
 	<button onclick="window.location.href='logout.php'">Logout</button>
 
-<?php }
+<?php
+}
 ?>
 <button>Calculator</button>
 </header>
 
 <body>
 <div title="Files" class="fileViewer">
-	<?php if(testSessionId() !=0) { ?>
+	<?php if (testSessionId() != 0) { ?>
 		<ul id="treeFile" onclick="labels()">
-			<?= files($dir); ?>
+			<?=files($dir); ?>
 		</ul>
-	<?php }else{?>
+	<?php
+} else { ?>
 		<p> You can not access the file system while you are not logged in! </p>
-	<?php }?></div>
+	<?php
+} ?></div>
 </body></html>

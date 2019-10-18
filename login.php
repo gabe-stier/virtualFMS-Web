@@ -1,8 +1,8 @@
-<?php include 'db.php'; 
- if (!empty($_POST)) {
+<?php
+if (!empty($_POST)) {
     session_start();
-  if (isset($_POST['username']) && isset($_POST['loginPwd'])) {
-	print "test1";
+    if (isset($_POST['username']) && isset($_POST['loginPwd'])) {
+        print "test1";
         $usr = $_POST['username'];
         $loginPwd = $_POST['loginPwd'];
         $conn = new mysqli('localhost', 'vfmsUSER', '?uvl=1Crod', 'VFMS');
@@ -18,12 +18,12 @@
                     $_SESSION['result'] = true;
                     $_SESSION['resultCode'] = 1;
                     $_SESSION['sesID'] = $uid;
-		    header('location: userPerms.php');
+                    header('location: userPerms.php');
                 } else {
                     session_destroy();
                     $_POST['result'] = false;
                     $_POST['resultCode'] = 10;
-		    header('location: index.php');
+                    header('location: index.php');
                 }
             }
         } else {
@@ -31,15 +31,13 @@
             $_POST['result'] = false;
             if (mysqli_stmt_num_rows($sql) > 1) $_POST['resultCode'] = 26;
             else $_POST['resultCode'] = 25;
-		header('location: index.php');
+            header('location: index.php');
         }
-	mysqli_close($conn);
+        mysqli_close($conn);
     } else {
         $_POST['result'] = false;
         $_POST['resultCode'] = 20;
-	header('location: index.php');
+        header('location: index.php');
     }
 }
-
-
 ?>
