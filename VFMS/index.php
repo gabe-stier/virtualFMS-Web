@@ -26,7 +26,7 @@ var_dump($_SESSION);
 
 <html><head>
 	<title>Virtual File Management System</title>
-	<link rel="stylesheet" href="styles/indexVFMS.css">
+	<link rel="stylesheet" href="../styles/VFMS/indexVFMS.css">
 	<script type="text/javascript">
 	function readFile(){
 		window.open('readfile.php','_blank','height=400,width=400');
@@ -60,7 +60,7 @@ if (testSessionId() == 0) { ?>
 <?php
 }
 ?>
-<button>Calculator</button>
+<button href="../calculator/">Calculator</button>
 </header>
 
 <body>
