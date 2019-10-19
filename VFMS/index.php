@@ -26,7 +26,7 @@ function testSessionId() {
 
 <head>
 	<title>Virtual File Management System</title>
-	<link rel="stylesheet" href="../styles/VFMS/index.css">
+	<link rel="stylesheet" href="./index.css">
 	<link rel="stylesheet" href="bootstrap-4.3.1-dist/css/bootstrap.min.css">
 	<script type="text/javascript">
 		function readFile() {
@@ -79,7 +79,7 @@ if (testSessionId() == 0) { ?>
 </header>
 
 <body>
-	<div title="Files" class="fileViewer">
+	<div title="Files">
 		<?php if (testSessionId() != 0) { ?>
 		<ul id="treeFile" onclick="labels()">
 			<?=files($dir); ?>
