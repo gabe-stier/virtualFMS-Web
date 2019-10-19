@@ -5,7 +5,7 @@ $me = "<script>alert('test')</script>";
 function files($loc) {
     $me = "<script>alert(\'test\')</script>";
     foreach (new DirectoryIterator($loc) as $file) if ($file->isFile()) {
-        print "<li>" . $file->getFilename() . "\t" . "<form action='download.php' method='post'><input type='hidden' name='filename' value='" . $file->getFilename() . "'><input type='hidden' name='file' value='" . $file->getPathname() . "'><button type='submit'>Download</button></form> " .
+        print "<li>" . $file->getFilename() . "\t" . "<form action='download.php' method='post'><input type='hidden' name='filename' value='" . $file->getFilename() . "'><input type='hidden' name='file' value='" . $file->getPathname() . "'><button class='btn btn-primary' type='submit'>Download</button></form> " .
         //	."<button>Download</button>
         "</li>\n";
     } else if ($file != '..' && $file != '.') {
@@ -26,6 +26,7 @@ function testSessionId() {
 <html><head>
 	<title>Virtual File Management System</title>
 	<link rel="stylesheet" href="../styles/VFMS/index.css">
+  	<link rel="stylesheet" href="bootstrap-4.3.1-dist/css/bootstrap.min.css">
 	<script type="text/javascript">
 	function readFile(){
 		window.open('readfile.php','_blank','height=400,width=400');
@@ -49,17 +50,24 @@ function testSessionId() {
 	</script>
 </head>
 <header>
-	<h1>Basher's Group</h1>
+<div class="container vertical-center">
+
+	<center><h1>Basher's Group</h1></center>
+  <hr>
+    <div class="row justify-content-center">
 <?php
 if (testSessionId() == 0) { ?>
- 	<button onclick="openLoginWindow()">Login</button><button onclick="openSignUpWindow()">Sign Up</button><?php
-} else { ?>
-	<button onclick="window.location.href='logout.php'">Logout</button>
+<div class="col-sm-2">
+ 	<button class="btn btn-success" onclick="openLoginWindow()">Login</button></div><div class="col-sm-2"><button class="btn btn-secondary" onclick="openSignUpWindow()">Sign Up</button></div><?php
+} else { ?>	<button class="btn btn-danger"   onclick="window.location.href='logout.php'">Logout</button>
 
 <?php
 }
 ?>
-<button onclick="window.location.href='../Calculator/'">Calculator</button>
+<div class="col-sm-2"><button class="btn btn-dark" onclick="window.location.href='../Calculator/'">Calculator</button></div>
+</div>
+</div>
+<hr>
 </header>
 
 <body>
