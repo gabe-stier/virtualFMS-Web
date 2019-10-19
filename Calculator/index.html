@@ -1,23 +1,27 @@
-<html><header>
+<html>
+
+<head>
     <title>128-Bit Calculator</title>
     <link rel="stylesheet" href="../styles/VFMS/indexVFMS.css">
-</header>
+</head>
 
-<head><button onclick="window.location.href='../VFMS/'">File Mangement System</button></head>
+<header>
+    <h1>Basher's Group</h1><button onclick="window.location.href='../VFMS/'">File Mangement System</button>
+</header>
 
 <body>
     <div id='calculator'>
-                <label>Number 1:</label>
-                <input id="num1" type="text">
-                <br>
-                <label>Number 2:</label>
-                <input id="num2" type="text">
-                <br>
-                <button onclick="calc()">Multiply</button>
-                <div id="ans" style="display: none;">
-                <label id="peter">Answer:      </label>
-                </div>
-</div>
+        <label>Number 1:</label>
+        <input id="num1" type="text">
+        <br>
+        <label>Number 2:</label>
+        <input id="num2" type="text">
+        <br>
+        <button onclick="calc()">Multiply</button>
+        <div id="ans" style="display: none;">
+            <label id="peter">Answer: </label>
+        </div>
+    </div>
 </body>
 <script type="text/javascript">
     function calculate(x, y) {
@@ -53,12 +57,13 @@
 
     function calc() {
         var start = new Date().getTime();
-        var product = calculate(document.getElementById('num1').value,document.getElementById('num2').value);
+        var product = calculate(document.getElementById('num1').value, document.getElementById('num2').value);
         var end = new Date().getTime();
-	document.getElementById("peter").innerHTML ="Answer: " + product ;
-	document.getElementById("ans").style.display = "block";
+        document.getElementById("peter").innerHTML = "Answer: " + product;
+        document.getElementById("ans").style.display = "block";
     }
-//    document.write(product + "<br> It took " + (end - start) + " ms to calculate.");
+    //    document.write(product + "<br> It took " + (end - start) + " ms to calculate.");
 
 </script>
+
 </html>
