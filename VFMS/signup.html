@@ -1,45 +1,74 @@
-<html><script type="text/javascript">
-	function submit(){
-		if(pwdPolicy()){
-			var pwd1 = document.getElementById("pwd1").value;
-			var pwd2 = document.getElementById("pwd2").value;
-			if(pwd1.localeCompare(pwd2)==0){
-				document.getElementById("form").submit();
-			}else{
-				document.getElementById("pwdMatch").style.display = "block";
-			}
-		}else{
-			document.getElementById("pwdPolicy").style.display= "block";
-		}
-	}
-	
-	function pwdPolicy(){
-		var pwd = document.getElementById("pwd1").value;
-		var regex = "[ !@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]";
-		return regex.test(str);
-	}
-</script>
-<div id="signForm">
-                <form id="form" action="signup.php" class="form-container" method='post'>
-                        <h1>Sign Up</h1>
-			<label for="Name"><b>Name</b></label>
-			<input type="text" placeholder="Enter Name" name="name" required>
-                        <br>
-                        <label for="username"><b>Username</b></label>
-                        <input type="text" placeholder="Enter Username" name="username" required>
-                        <br>
-                        <label for="pwd"><b>Password</b></label>
-                        <input id="pwd1" type="password" placeholder="Enter Password" name="signPwd" required><br>
-			<label>Password policy: Minimum of 20 characters, at least 1 special charcter, at least 1 lower case letter, 
-				at least 1 upper case letter, at least 1 number.</label>
-                        <br>
-			<label for="pwdConfirm"><b>Confirm Password</b></label>
-			<input id="pwd2" type="password" placeholder="Confirm Password" name="confirmPwd" required>
-			<label id="pwdMatch" style="display: none; color: red"><u>Passwords do not match</u></label>
-			<label id="pwdPolicy" style="display: none; color: red"><u>Password does not follow policy</u></label>
-			<br></form>
-                        <button onclick="submit()" class="btn">Sign Up</button>
-                        <button type="submit" class="btn cancel" onclick="window.close()">Close</button>
-        </div>
-</html>
+<html>
+<link rel="stylesheet" href="bootstrap-4.3.1-dist/css/bootstrap.min.css">
+<script type="text/javascript">
+    function submit() {
+        if (pwdPolicy()) {
+            var pwd1 = document.getElementById("pwd1").value;
+            var pwd2 = document.getElementById("pwd2").value;
+            if (pwd1.localeCompare(pwd2) == 0) {
+                document.getElementById("form").submit();
+            } else {
+                document.getElementById("pwdMatch").style.display = "block";
+            }
 
+        } else {
+            document.getElementById("pwdPolicy").style.display = "block";
+        }
+    }
+
+    function pwdPolicy() {
+        var pwd = document.getElementById("pwd1").value;
+        var regex = "[ !@#$%^&*()_+\-=\[\]{};':"\\ | ,
+            . < > \/?]";
+        return regex.test(str);
+    }
+
+</script>
+<div class="container">
+    <div class="row justify-content-md-center align-items-center">
+        <div class="col-md-6">
+            <form id="form" action="signup.php" class="form-container" method='post'>
+                <h1>Sign Up</h1>
+                <div class="form-group row">
+                    <label class="col-sm-4 col-form-label" for="Name"><b>Name: </b></label>
+                    <div class="col-md-8">
+                        <input class="form-control" type="text" placeholder="Enter Name" name="name" required>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-4 col-form-label" for="username"><b>Username: </b></label>
+                    <div class="col-md-8">
+                        <input class="form-control" type="text" placeholder="Enter Username" name="username" required>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-4 col-form-label" for="pwd"><b>Password: </b></label>
+                    <div class="col-md-8">
+                        <input class="form-control" id="pwd1" type="password" placeholder="Enter Password" name="signPwd" required>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-4 col-form-label" for="pwdConfirm"><b>Confirm Password: </b></label>
+                    <div class="col-md-8">
+                        <input class="form-control" id="pwd2" type="password" placeholder="Confirm Password" name="confirmPwd" required>
+                        <label id="pwdMatch" style="display: none; color: red"><u>Passwords do not match</u></label> <label id="pwdPolicy" style="display: none; color: red"><u>Password does not follow policy</u></label>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="col-sm-4">
+            <small class="form-text text-muted">Password policy: Minimum of 20 characters, at least 1 special character, at least 1 lower case letter,
+                at least 1 upper case letter, at least 1 number.</small>
+            <small class="form-text text-muted">All fields required.</small>
+            <div id="signForm">
+                <hr>
+                <div class="container">
+                    <button onclick="submit()" class="btn btn-success form-inline">Sign Up</button>
+                    <button type="submit" class="btn cancel btn-secondary form-inline" onclick="window.close()">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</html>
