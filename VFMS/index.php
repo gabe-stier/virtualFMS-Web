@@ -21,7 +21,6 @@ function testSessionId() {
         return 0;
     }
 }
-var_dump($_SESSION);
 ?>
 
 <html><head>
