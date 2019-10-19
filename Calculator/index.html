@@ -1,4 +1,24 @@
-<html>
+<html><header>
+    <title>128-Bit Calculator</title>
+    <link rel="stylesheet" href="../styles/VFMS/indexVFMS.css">
+</header>
+
+<head><button onclick="window.location.href='../VFMS/'">File Mangement System</button></head>
+
+<body>
+    <div id='calculator'>
+                <label>Number 1:</label>
+                <input id="num1" type="text">
+                <br>
+                <label>Number 2:</label>
+                <input id="num2" type="text">
+                <br>
+                <button onclick="calc()">Multiply</button>
+                <div id="ans" style="display: none;">
+                <label id="peter">Answer:      </label>
+                </div>
+</div>
+</body>
 <script type="text/javascript">
     function calculate(x, y) {
         var base = 10;
@@ -13,8 +33,6 @@
 
         var n = (num1.length > num2.length) ? num2.length : num1.length;
         var m = Math.round(n / 2);
-
-
 
         var high1 = parseInt(num1.substring(0, num1.length - m));
         var low1 = parseInt(num1.substring(num1.length - m, num1.length));
@@ -35,21 +53,12 @@
 
     function calc() {
         var start = new Date().getTime();
-        var product = calculate(9223372036854775807, 9223372036854775807);
+        var product = calculate(document.getElementById('num1').value,document.getElementById('num2').value);
         var end = new Date().getTime();
+	document.getElementById("peter").innerHTML ="Answer: " + product ;
+	document.getElementById("ans").style.display = "block";
     }
-    document.write(product + "<br> It took " + (end - start) + " ms to calculate.");
+//    document.write(product + "<br> It took " + (end - start) + " ms to calculate.");
 
 </script>
-<header>
-    <title>128-Bit Calculator</title>
-    <link rel="stylesheet" href="../styles/VFMS/indexVFMS.css">
-</header>
-
-<head><button href="../VFMS/">File Mangement System</button></head>
-
-<body>
-    <div id='calculator'></div>
-</body>
-
 </html>
