@@ -18,8 +18,7 @@
 
     function pwdPolicy() {
         var pwd = document.getElementById("pwd1").value;
-        var regex = "[ !@#$%^&*()_+\-=\[\]{};':"\\ | ,
-            . < > \/?]";
+        var regex = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%&*()]).{8,}/;
         return regex.test(str);
     }
 
