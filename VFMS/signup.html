@@ -19,7 +19,7 @@
     function pwdPolicy() {
         var pwd = document.getElementById("pwd1").value;
         var regex = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%&*()]).{8,}/;
-        return regex.test(str);
+        return (regex.test(str) && (pwd.length >=20));
     }
 
 </script>
