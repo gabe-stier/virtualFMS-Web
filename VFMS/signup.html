@@ -1,13 +1,23 @@
 <html><script type="text/javascript">
 	function submit(){
-	var pwd1 = document.getElementById("pwd1").value;
-	var pwd2 = document.getElementById("pwd2").value;
-	if(pwd1.localeCompare(pwd2)==0)
-{document.getElementById("form").submit();}
-	else{
-		document.getElementById("pwdMatch").style.display = "block";
+		if(pwdPolicy()){
+			var pwd1 = document.getElementById("pwd1").value;
+			var pwd2 = document.getElementById("pwd2").value;
+			if(pwd1.localeCompare(pwd2)==0){
+				document.getElementById("form").submit();
+			}else{
+				document.getElementById("pwdMatch").style.display = "block";
+			}
+		}else{
+			document.getElementById("pwdPolicy").style.display= "block";
+		}
 	}
-}
+	
+	function pwdPolicy(){
+		var pwd = document.getElementById("pwd1").value;
+		var regex = "[ !@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]";
+		return regex.test(str);
+	}
 </script>
 <div id="signForm">
                 <form id="form" action="signup.php" class="form-container" method='post'>
@@ -26,6 +36,7 @@
 			<label for="pwdConfirm"><b>Confirm Password</b></label>
 			<input id="pwd2" type="password" placeholder="Confirm Password" name="confirmPwd" required>
 			<label id="pwdMatch" style="display: none; color: red"><u>Passwords do not match</u></label>
+			<label id="pwdPolicy" style="display: none; color: red"><u>Password does not follow policy</u></label>
 			<br></form>
                         <button onclick="submit()" class="btn">Sign Up</button>
                         <button type="submit" class="btn cancel" onclick="window.close()">Close</button>
