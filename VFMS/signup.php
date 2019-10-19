@@ -1,5 +1,4 @@
 <?php
-$conn = dbconnect();
 $conn = new mysqli('localhost', 'vfmsUSER', '?uvl=1Crod', 'VFMS');
 $usr = $_POST['username'];
 $name = $_POST['name'];
@@ -31,6 +30,6 @@ if (mysqli_stmt_num_rows($sql) == 0) {
     echo "Could not create that User";
     header('refresh: 5; url=signup.html');
 }
-dbclose($conn);
+	$conn->close();
 ?>
 
