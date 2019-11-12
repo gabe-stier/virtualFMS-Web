@@ -4,7 +4,7 @@ $dir = '/var/protected';
 $me = "<script>alert('test')</script>";
 $slev = "AdmiN TesT";
 $ip = "192.168.0.19";
-! Not needed.
+
 //function files($loc) {
 //    $me = "<script>alert(\'test\')</script>";
 //    foreach (new DirectoryIterator($loc) as $file) if ($file->isFile()) {
@@ -31,7 +31,6 @@ function testSessionId() {
 	<title>Light Controller</title>
 	<!link rel="stylesheet" href="./index.css"> // Not needed. 
 	<link rel="stylesheet" href="../VFMS/bootstrap-4.3.1-dist/css/bootstrap.min.css">
-    // Take out for this section. Need Light Buttons here instead
     
 	<script type="text/javascript">
 //		function readFile() {
@@ -80,8 +79,7 @@ function testSessionId() {
 			<h1>Light Change</h1>
 		</center>
 		<br>
-            <h3 style="padding-top: 100px;padding-left: 100px;">Your Privilege Level: <?php echo $slev ?></h3> 
-        ! Added variable slev for determining security level. Call for function at page load to determine user type & permissions based on either UID or Session. 
+            <h3 style="padding-top: 100px;padding-left: 100px;">Your Privilege Level: <?php echo $slev ?></h3>
         
 		<div class="row justify-content-center">
 			<?php
@@ -89,11 +87,15 @@ if (testSessionId() == 0) { ?>
 			<div class="col-sm-2">
 				<button class="btn btn-success" onclick="openLoginWindow()">Login</button></div>
 			<div class="col-sm-2"><button class="btn btn-secondary" onclick="openSignUpWindow()">Sign Up</button></div><?php
-} else { ?> <button class="btn btn-danger" onclick="window.location.href='logout.php'">Logout</button>
+} else { ?> <button class="btn btn-danger" onclick="window.location.href='../VFMS/logout.php'">Logout</button>
 
 			<?php
 }
 ?>
+			<div class="col-sm-2"><button class="btn btn-dark" onclick="window.location.href='../Calculator/'">Calculator</button></div>
+            <div class="col-sm-2"><button class="btn btn-warning" onclick="window.location.href='../VFMS/'">File System</button></div>
+		</div>
+	</div>
 		</div>
 	</div>
 	<hr>
