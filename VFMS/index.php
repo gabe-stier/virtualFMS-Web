@@ -73,6 +73,7 @@ if (testSessionId() == 0) { ?>
 }
 ?>
 			<div class="col-sm-2"><button class="btn btn-dark" onclick="window.location.href='../Calculator/'">Calculator</button></div>
+            <div class="col-sm-2"><button class="btn btn-warning" onclick="window.location.href='../Lights/'">Light Controller</button></div>
 		</div>
 	</div>
 	<hr>
