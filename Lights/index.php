@@ -123,6 +123,8 @@ if (testSessionId() == 0) { ?>
 				<button class="btn btn-warning" onclick="window.location.href='http://192.168.0.19/?red=1&green=1&blue=0'">Yellow</button></div>
         <div class="col-sm-1">
 				<button class="btn btn-secondary" onclick="window.location.href='http://192.168.0.19/?red=1&green=0&blue=1'">Purple</button></div>
+        <div class="col-sm-1">
+				<button class="btn btn-light" onclick="window.location.href='http://192.168.0.19/?red=1&green=1&blue=1'">White</button></div>
         
     </div>
 </body>
