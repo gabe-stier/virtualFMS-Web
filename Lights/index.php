@@ -109,19 +109,19 @@ if (testSessionId() == 0) { ?>
 		<?php
 } ?></div>
     <div class="row justify-content-center">
-        <div class="col-sm-2">
+        <div class="col-sm-1">
 				<button class="btn btn-dark" onclick="window.location.href='http://192.168.0.19/?red=0&green=0&blue=0'">Off</button></div>
-        <div class="col-sm-2">
+        <div class="col-sm-1">
 				<button class="btn btn-primary" onclick="window.location.href='http://192.168.0.19/?red=0&green=0&blue=1'">Blue</button></div>
-        <div class="col-sm-2">
+        <div class="col-sm-1">
 				<button class="btn btn-danger" onclick="window.location.href='http://192.168.0.19/?red=1&green=0&blue=0'">Red</button></div>
-        <div class="col-sm-2">
+        <div class="col-sm-1">
 				<button class="btn btn-success" onclick="window.location.href='http://192.168.0.19/?red=0&green=1&blue=0'">Green</button></div>
-        <div class="col-sm-2">
+        <div class="col-sm-1">
 				<button class="btn btn-info" onclick="window.location.href='http://192.168.0.19/?red=0&green=1&blue=1'">Teal</button></div>
-        <div class="col-sm-2">
+        <div class="col-sm-1">
 				<button class="btn btn-warning" onclick="window.location.href='http://192.168.0.19/?red=1&green=1&blue=0'">Yellow</button></div>
-        <div class="col-sm-2">
+        <div class="col-sm-1">
 				<button class="btn btn-secondary" onclick="window.location.href='http://192.168.0.19/?red=1&green=0&blue=1'">Purple</button></div>
         
     </div>
