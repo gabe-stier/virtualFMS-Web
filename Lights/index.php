@@ -3,7 +3,6 @@ session_start();
 $dir = '/var/protected';
 $me = "<script>alert('test')</script>";
 $slev = "AdmiN TesT";
-$ip = "192.168.0.19";
 
 //function files($loc) {
 //    $me = "<script>alert(\'test\')</script>";
@@ -96,8 +95,6 @@ if (testSessionId() == 0) { ?>
             <div class="col-sm-2"><button class="btn btn-warning" onclick="window.location.href='../VFMS/'">File System</button></div>
 		</div>
 	</div>
-		</div>
-	</div>
 	<hr>
 </header>
 
@@ -114,7 +111,14 @@ if (testSessionId() == 0) { ?>
 } ?></div>
     <div>
         <div class="col-sm-2">
-				<button class="btn btn-secondary" onclick="document.url.href('$ip/?red=0&green=0%blue=1')">Blue Test</button></div>
+				<button class="btn btn-secondary" onclick="window.location.href('http://192.168.0.19/?red=0&green=0&blue=0')">Off</button></div>
+        <div class="col-sm-2">
+				<button class="btn btn-primary" onclick="window.location.href('http://192.168.0.19/?red=0&green=0&blue=1')">Blue</button></div>
+        <div class="col-sm-2">
+				<button class="btn btn-danger" onclick="window.location.href('http://192.168.0.19/?red=1&green=0&blue=0')">Red</button></div>
+        <div class="col-sm-2">
+				<button class="btn btn-success" onclick="window.location.href('http://192.168.0.19/?red=0&green=1&blue=0')">Green</button></div>
+        
     </div>
 </body>
 
