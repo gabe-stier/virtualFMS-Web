@@ -2,7 +2,7 @@
 session_start();
 $dir = '/var/protected';
 $me = "<script>alert('test')</script>";
-$slev = "AdmiN TesT";
+$slev = "getGroup";
 
 //function files($loc) {
 //    $me = "<script>alert(\'test\')</script>";
@@ -108,25 +108,21 @@ if (testSessionId() == 0) { ?>
 		<p> You can not access the light controller while you are not logged in! </p>
 		<?php
 } ?></div>
+<form action="http://192.168.0.19" method="get">
     <div class="row justify-content-center">
-        <div class="col-sm-1">
-				<button class="btn btn-dark" onclick="window.location.href='http://192.168.0.19/?red=0&green=0&blue=0'">Off</button></div>
-        <div class="col-sm-1">
-				<button class="btn btn-primary" onclick="window.location.href='http://192.168.0.19/?red=0&green=0&blue=1'">Blue</button></div>
-        <div class="col-sm-1">
-				<button class="btn btn-danger" onclick="window.location.href='http://192.168.0.19/?red=1&green=0&blue=0'">Red</button></div>
-        <div class="col-sm-1">
-				<button class="btn btn-success" onclick="window.location.href='http://192.168.0.19/?red=0&green=1&blue=0'">Green</button></div>
-        <div class="col-sm-1">
-				<button class="btn btn-info" onclick="window.location.href='http://192.168.0.19/?red=0&green=1&blue=1'">Teal</button></div>
-        <div class="col-sm-1">
-				<button class="btn btn-warning" onclick="window.location.href='http://192.168.0.19/?red=1&green=1&blue=0'">Yellow</button></div>
-        <div class="col-sm-1">
-				<button class="btn btn-secondary" onclick="window.location.href='http://192.168.0.19/?red=1&green=0&blue=1'">Purple</button></div>
-        <div class="col-sm-1">
-				<button class="btn btn-light" onclick="window.location.href='http://192.168.0.19/?red=1&green=1&blue=1'">White</button></div>
+
+            
+            <div class="col-sm-1"><label>Red: </label>
+                <input type="checkbox" name="red"></div>
+            <div class="col-sm-1"><label>Blue: </label>
+                <input type="checkbox" name="blue"></div>
+            <div class="col-sm-1"><label>Green: </label>
+                <input type="checkbox" name="green"></div><br>
+
         
     </div>
+            <input type="submit" placeholder="Submit">
+            </form>
 </body>
 
 </html>
