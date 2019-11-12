@@ -98,7 +98,7 @@ if (testSessionId() == 0) { ?>
 </header>
 
 <body>
-	<div title="Light Buttons">
+	<div title="Light Buttons" class="row justify-content-center">
 		<?php if (testSessionId() != 0) { ?>
 		<ul id="treeFile" onclick="labels()">
 			<?=files($dir); ?>
@@ -121,7 +121,7 @@ if (testSessionId() == 0) { ?>
 
         
     </div>
-            <input type="submit" placeholder="Submit">
+            <center><input type="submit" placeholder="Submit"></center>
             </form>
 </body>
 
