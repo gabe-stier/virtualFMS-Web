@@ -2,7 +2,9 @@
 session_start();
 $dir = '/var/protected';
 $me = "<script>alert('test')</script>";
-// Not needed.
+$slev = "AdmiN TesT";
+$ip = "192.168.0.19";
+! Not needed.
 //function files($loc) {
 //    $me = "<script>alert(\'test\')</script>";
 //    foreach (new DirectoryIterator($loc) as $file) if ($file->isFile()) {
@@ -31,21 +33,20 @@ function testSessionId() {
 	<link rel="stylesheet" href="../VFMS/bootstrap-4.3.1-dist/css/bootstrap.min.css">
     // Take out for this section. Need Light Buttons here instead
     
-<!--
 	<script type="text/javascript">
-		function readFile() {
-			window.open('../VFMS/readfile.php', '_blank', 'height=400,width=400');
-		}
-
-		function openLoginWindow() {
-			window.open('../VFMS/login.html', '_blank', 'height=400,width=400');
-		}
-
-		function openSignUpWindow() {
-			window.open('../VFMS/signup.html', '_blank', 'height=400,width=400');
-		}
-		var toggler = document.getElementsByClassName("caret");
-		var i;
+//		function readFile() {
+//			window.open('../VFMS/readfile.php', '_blank', 'height=400,width=400');
+//		}
+//
+//		function openLoginWindow() {
+//			window.open('../VFMS/login.html', '_blank', 'height=400,width=400');
+//		}
+//
+//		function openSignUpWindow() {
+//			window.open('../VFMS/signup.html', '_blank', 'height=400,width=400');
+//		}
+//		var toggler = document.getElementsByClassName("caret");
+//		var i;
 
 		function labels() {
 			for (i = 0; i < toggler.length; i++) {
@@ -55,9 +56,22 @@ function testSessionId() {
 				});
 			}
 		}
+        function buttons(slev) {
+            if ($slev == "AdmiN TesT")
+                {
+                    // Show all buttons
+                }
+            else if ($slev == "System Admin")
+                {
+                    // Show r,g, b, off buttons
+                }
+            else if ($slev == "User")
+                {
+                    // Show b, off buttons
+                }
+        }
 
 	</script>
--->
 </head>
 <header>
 	<div class="container vertical-center">
@@ -67,7 +81,7 @@ function testSessionId() {
 		</center>
 		<br>
             <h3 style="padding-top: 100px;padding-left: 100px;">Your Privilege Level: <?php echo $slev ?></h3> 
-        // Added variable slev for determining security level. Call for function at page load to determine user type & permissions based on either UID or Session. 
+        ! Added variable slev for determining security level. Call for function at page load to determine user type & permissions based on either UID or Session. 
         
 		<div class="row justify-content-center">
 			<?php
@@ -80,15 +94,13 @@ if (testSessionId() == 0) { ?>
 			<?php
 }
 ?>
-			<div class="col-sm-2"><button class="btn btn-dark" onclick="window.location.href='../Calculator/'">Calculator</button></div>
-            <div class="col-sm-2"><button class="btn btn-warning" onclick="window.location.href='../Lights/'">Light Controller</button></div>
 		</div>
 	</div>
 	<hr>
 </header>
 
 <body>
-	<div title="Files">
+	<div title="Light Buttons">
 		<?php if (testSessionId() != 0) { ?>
 		<ul id="treeFile" onclick="labels()">
 			<?=files($dir); ?>
@@ -98,6 +110,10 @@ if (testSessionId() == 0) { ?>
 		<p> You can not access the light controller while you are not logged in! </p>
 		<?php
 } ?></div>
+    <div>
+        <div class="col-sm-2">
+				<button class="btn btn-secondary" onclick="document.url.href('$ip/?red=0&green=0%blue=1')">Blue Test</button></div>
+    </div>
 </body>
 
 </html>
