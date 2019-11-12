@@ -28,7 +28,6 @@ function testSessionId() {
 
 <head>
 	<title>Light Controller</title>
-	<!link rel="stylesheet" href="./index.css"> // Not needed. 
 	<link rel="stylesheet" href="../VFMS/bootstrap-4.3.1-dist/css/bootstrap.min.css">
     
 	<script type="text/javascript">
@@ -111,13 +110,13 @@ if (testSessionId() == 0) { ?>
 } ?></div>
     <div>
         <div class="col-sm-2">
-				<button class="btn btn-secondary" onclick="window.location.href('http://192.168.0.19/?red=0&green=0&blue=0')">Off</button></div>
+				<button class="btn btn-secondary" onclick="window.location.href='http://192.168.0.19/?red=0&green=0&blue=0'">Off</button></div>
         <div class="col-sm-2">
-				<button class="btn btn-primary" onclick="window.location.href('http://192.168.0.19/?red=0&green=0&blue=1')">Blue</button></div>
+				<button class="btn btn-primary" onclick="window.location.href'http://192.168.0.19/?red=0&green=0&blue=1'">Blue</button></div>
         <div class="col-sm-2">
-				<button class="btn btn-danger" onclick="window.location.href('http://192.168.0.19/?red=1&green=0&blue=0')">Red</button></div>
+				<button class="btn btn-danger" onclick="window.location.href'http://192.168.0.19/?red=1&green=0&blue=0'">Red</button></div>
         <div class="col-sm-2">
-				<button class="btn btn-success" onclick="window.location.href('http://192.168.0.19/?red=0&green=1&blue=0')">Green</button></div>
+				<button class="btn btn-success" onclick="window.location.href'http://192.168.0.19/?red=0&green=1&blue=0'">Green</button></div>
         
     </div>
 </body>
