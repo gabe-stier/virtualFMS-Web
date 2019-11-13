@@ -121,7 +121,7 @@ if (testSessionId() == 0) { ?>
 
         
     </div>
-            <center><input type="submit" placeholder="Submit"></center>
+            <center><input class="btn btn-secondary" type="submit" placeholder="Submit"></center>
             </form>
 </body>
 
