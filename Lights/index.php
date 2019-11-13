@@ -108,20 +108,33 @@ if (testSessionId() == 0) { ?>
 		<p> You can not access the light controller while you are not logged in! </p>
 		<?php
 } ?></div>
-<form action="http://192.168.0.19" method="get">
+<!-- <form action="http://192.168.0.19" method="get"> -->
+<!-- <form action="http://192.168.137.178 method="get"> -->
+	<!-- <form target="lights" method="get"> -->
     <div class="row justify-content-center">
 
             
             <div class="col-sm-1"><label>Red: </label>
-                <input type="checkbox" name="red"></div>
+                <input type="checkbox" name="red" id="red"></div>
             <div class="col-sm-1"><label>Blue: </label>
-                <input type="checkbox" name="blue"></div>
+                <input type="checkbox" name="blue" id="blue"></div>
             <div class="col-sm-1"><label>Green: </label>
-                <input type="checkbox" name="green"></div><br>
+                <input type="checkbox" name="green" id="green"></div><br>
 
         
     </div>
-            <center><input class="btn btn-secondary" type="submit" placeholder="Submit"></center>
+            <center>
+		<!--    <input class="btn btn-secondary" type="submit" placeholder="Submit"> -->
+		<!-- 	<input class="btn btn-secondary" type="submit" placeholder="Submit" onclick="setIframeSrc(); return false;"> -->
+		    <script>  
+			    function setIframeSrc(){
+				    var red = document.getElementById('red').value;
+				    var blue = document.getElementById('blue').value;
+				    var green = document.getElementById('green').value;
+				    alert('red -> ' + red + '\n blue -> ' + blue + '\n green -> ' + green);
+			    }
+		    </script>
+	</center>
             </form>
 </body>
 
