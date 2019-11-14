@@ -18,7 +18,7 @@
     function openSignUpWindow() {
         window.open('../VFMS/signup.html', '_blank', 'height=400,width=400');
     }
-    function displayGroup(guid) {
+    function displayGroup() {
         switch($guid) {
             case 1:
                 $gname = "User";
