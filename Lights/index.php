@@ -2,7 +2,8 @@
 	session_start();
 	$dir = '/var/protected';
 	$me = "<script>alert('test')</script>";
-	$slev = "getGroup";
+    $guid = 0;
+    $gname;
 
 	function testSessionId() {
 	    if (isset($_SESSION['sesID'])) {
@@ -11,6 +12,42 @@
 		return 0;
 	    }
 	}
+    function openLoginWindow() {
+	   window.open('../VFMS/login.html', '_blank', 'height=400,width=400');
+    }
+    function openSignUpWindow() {
+        window.open('../VFMS/signup.html', '_blank', 'height=400,width=400');
+    }
+    function displayGroup(guid) {
+        switch($guid) {
+            case 1:
+                $gname = "User";
+                break;
+            case 2:
+                $gname = "System Admin";
+                break;
+            case 3:
+                $gname = "Domain Admin";
+                break;
+            default:
+                $gname = "Not Defined";
+        }
+    }
+    function red() {
+        print "<label>Red: </label>
+			<input type='checkbox' name='red' id='red'></div>";
+                    guid++;
+    }
+    function blue() {
+        print "<label>Blue: </label>
+			<input type='checkbox' name='blue' id='blue'></div>";
+                    guid++;
+    }
+    function green() {
+        print "<label>Green: </label>
+			<input type='checkbox' name='green' id='green'></div>";
+                    guid++;
+    }
 ?>
 
 <html>
@@ -28,20 +65,7 @@
                                 });
                         }
                 }
-        function buttons(slev) {
-            if ($slev == "AdmiN TesT")
-                {
-                    // Show all buttons
-		}
-		else if ($slev == "System Admin")
-                {
-                    // Show r,g, b, off buttons
-                }
-            else if ($slev == "User")
-                {
-                    // Show b, off buttons
-                }
-        }
+
 
         </script>
 </head>
@@ -52,7 +76,7 @@
                         <h1>Light Change</h1>
                 </center>
                 <br>
-            	<h3 style="padding-top: 100px;padding-left: 100px;">Your Privilege Level: <?php echo $slev ?></h3>
+            	<h3 style="padding-top: 100px;padding-left: 100px;">Your Privilege Level: <?php echo $name ?></h3>
 
                 <div class="row justify-content-center">
                         <?php
@@ -88,12 +112,30 @@
 <!--	 <form action="http://192.168.137.178 method="get"> -->
          <form target="lights" method="get">
     		<div class="row justify-content-center">
-
+<?php
+    if (isset($_SESSION['red'])) { ?>
+            <div class="col-sm-1">
+                <? red(); ?>
+        <?php }
+    if (isset($_SESSION['blue'])) {  { ?>
+            <div class="col-sm-1">
+                <? blue(); ?>
+        <?php }
+    if (isset($_SESSION['green'])) {  { ?>
+            <div class="col-sm-1">
+                <? green(); ?>
+        <?php }
+        displayGroup(guid);
+    } ?>
+?>
+<!--
 		    <div class="col-sm-1"><label>Red: </label>
 			<input type="checkbox" name="red" id="red"></div>
 		    <div class="col-sm-1"><label>Blue: </label>
+                <input type="checkbox" name="blue" id="blue"></div>
 		    <div class="col-sm-1"><label>Green: </label>
 			<input type="checkbox" name="green" id="green"></div><br>
+-->
 
 
     		</div>
@@ -120,8 +162,9 @@
                             }
                     </script>
        		</center>
+             </div>
 	</form>
-	<center><iframe name='lights' id='lights' src='http://192.168.137.145/' style='border: none;'></iframe></center>
+	<center><iframe name='lights' id='lights' src='http://192.168.137.145/' style='border: none; font-family: "Courier New", monospace;'></iframe></center>
 </body>
 
 </html>
