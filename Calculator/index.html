@@ -1,87 +1,93 @@
 <html>
 
 <head>
-    <title>128-Bit Calculator</title>
-    <link rel="stylesheet" href="bootstrap-4.3.1-dist/css/bootstrap.min.css">
+	<title>128-Bit Calculator</title>
+	<link rel="stylesheet" href="bootstrap-4.3.1-dist/css/bootstrap.min.css">
 </head>
 
 <header>
-    <center><h1>Basher's Group</h1></center>
-    <hr>
+	<center>
+		<h1>Basher's Group</h1>
+	</center>
+	<hr>
 </header>
 
 <body>
-    <center><div class="container">
-        <div class="justify-content-md-center">
+	<center>
+		<div class="container">
+			<div class="justify-content-md-center">
 
-            <div id='calculator'>
-               <div class ="form-group">               <label class="col-form-label">Number 1:</label>
-                   <div class="col-md-3">
-          <input class="form-control" id="num1" type="text">                 </div>
-                   </div>
-<div class ="form-group"> 
-        <label class="col-form-label">Number 2:</label>
-    <div class="col-md-3">
-        <input class="form-control" id="num2" type="text">
-    </div>
-                   </div>
-        <button class="btn btn-primary" onclick="calc()">Multiply</button>
-                
-        <div id="ans" style="display: none;">
-            <label class="col-form-label" id="peter">Answer: </label>
-        </div>   
-              <hr>  
-            </div>
+				<div id='calculator'>
+					<div class="form-group"> <label class="col-form-label">Number 1:</label>
+						<div class="col-md-3">
+							<input class="form-control" id="num1" type="text"> </div>
+					</div>
+					<div class="form-group">
+						<label class="col-form-label">Number 2:</label>
+						<div class="col-md-3">
+							<input class="form-control" id="num2" type="text">
+						</div>
+					</div>
+					<button class="btn btn-primary" onclick="calc()">Multiply</button>
+
+					<div id="ans" style="display: none;">
+						<label class="col-form-label" id="peter">Answer: </label>
+					</div>
+					<hr>
+				</div>
 
 
 
-        </div>
-    </div></center>
-                <center><div class="col align-self-end">
-              <button class="btn btn-secondary" onclick="window.location.href='../VFMS/'">File Management System</button>
-    </div></center>
- 
+			</div>
+		</div>
+	</center>
+	<center>
+		<div class="col align-self-end">
+			<button class="btn btn-secondary" onclick="window.location.href='../VFMS/'">File Management System</button>
+		</div>
+	</center>
+
 </body>
 <script type="text/javascript">
-    function calculate(x, y) {
-        var base = 10;
+	function calculate(x, y) {
+		var base = 10;
 
 
-        if ((x < base) || (y < base)) {
-            return x * y;
-        }
+		if ((x < base) || (y < base)) {
+			return x * y;
+		}
 
-        var num1 = x.toString();
-        var num2 = y.toString();
+		var num1 = x.toString();
+		var num2 = y.toString();
 
-        var n = (num1.length > num2.length) ? num2.length : num1.length;
-        var m = Math.round(n / 2);
+		var n = (num1.length > num2.length) ? num2.length : num1.length;
+		var m = Math.round(n / 2);
 
-        var high1 = parseInt(num1.substring(0, num1.length - m));
-        var low1 = parseInt(num1.substring(num1.length - m, num1.length));
+		var high1 = parseInt(num1.substring(0, num1.length - m));
+		var low1 = parseInt(num1.substring(num1.length - m, num1.length));
 
-        var high2 = parseInt(num2.substring(0, num2.length - m));
-        var low2 = parseInt(num2.substring(num2.length - m, num2.length));
+		var high2 = parseInt(num2.substring(0, num2.length - m));
+		var low2 = parseInt(num2.substring(num2.length - m, num2.length));
 
 
-        var z0 = calculate(low1, low2);
-        var z1 = calculate(low1 + high1, low2 + high2);
-        var z2 = calculate(high1, high2);
+		var z0 = calculate(low1, low2);
+		var z1 = calculate(low1 + high1, low2 + high2);
+		var z2 = calculate(high1, high2);
 
-        var res = (z2 * Math.pow(10, 2 * m)) + ((z1 - z2 - z0) * Math.pow(10, m)) + z0;
+		var res = (z2 * Math.pow(10, 2 * m)) + ((z1 - z2 - z0) * Math.pow(10, m)) + z0;
 
-        return res;
+		return res;
 
-    }
+	}
 
-    function calc() {
-        var start = new Date().getTime();
-        var product = calculate(document.getElementById('num1').value, document.getElementById('num2').value);
-        var end = new Date().getTime();
-        document.getElementById("peter").innerHTML = "Answer: " + product;
-        document.getElementById("ans").style.display = "block";
-    }
-    //    document.write(product + "<br> It took " + (end - start) + " ms to calculate.");
+	function calc() {
+		var start = new Date().getTime();
+		var product = calculate(document.getElementById('num1').value, document.getElementById('num2').value);
+		var end = new Date().getTime();
+		document.getElementById("peter").innerHTML = "Answer: " + product;
+		document.getElementById("ans").style.display = "block";
+	}
+	//    document.write(product + "<br> It took " + (end - start) + " ms to calculate.");
 
 </script>
 
