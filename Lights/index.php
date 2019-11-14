@@ -117,16 +117,15 @@
             <div class="col-sm-1">
                 <? red(); ?>
         <?php }
-    if (isset($_SESSION['blue'])) {  { ?>
+    if (isset($_SESSION['blue'])) { ?>
             <div class="col-sm-1">
                 <? blue(); ?>
         <?php }
-    if (isset($_SESSION['green'])) {  { ?>
+    if (isset($_SESSION['green'])) { ?>
             <div class="col-sm-1">
                 <? green(); ?>
         <?php }
-        displayGroup(guid);
-    } ?>
+        displayGroup(guid); ?>
 <!--
 		    <div class="col-sm-1"><label>Red: </label>
 			<input type="checkbox" name="red" id="red"></div>
