@@ -16,15 +16,16 @@
 		$_SESSION['billy'] = "error";
 	}
 	mysqli_close($conn);
-?><html>
-<script type='text/javascript'>
-	window.onunload = refreshParent;
+?>
+<html>
+	<script type='text/javascript'>
+		window.onunload = refreshParent;
 
-	function refreshParent() {
-		window.opener.location.reload();
-	}
-	window.close();
+		function refreshParent() {
+			window.opener.location.reload();
+		}
+		window.close();
 
-</script>
+	</script>
 
 </html>
