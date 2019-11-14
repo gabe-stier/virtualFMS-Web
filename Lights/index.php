@@ -127,7 +127,6 @@
         <?php }
         displayGroup(guid);
     } ?>
-?>
 <!--
 		    <div class="col-sm-1"><label>Red: </label>
 			<input type="checkbox" name="red" id="red"></div>
@@ -162,6 +161,8 @@
                             }
                     </script>
        		</center>
+             </div>
+                </div>
              </div>
 	</form>
 	<center><iframe name='lights' id='lights' src='http://192.168.137.145/' style='border: none; font-family: "Courier New", monospace;'></iframe></center>
