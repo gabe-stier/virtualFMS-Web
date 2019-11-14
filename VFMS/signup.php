@@ -25,6 +25,35 @@
 		$true = "T";
 		$perms->bind_param("i", $uID);
 		$perms->execute();
+		$lights = $conn->prepare("INSERT INTO VFMS.LIGHT_PERMS (userID, red, blue, green) VALUES (?, ?, ?, ?)");
+		$color = rand(1,3);
+		$red = 'F';
+		$blue = 'F';
+		$green = 'F';
+		switch($color){
+			case 1:
+				$red = 'T';
+				$blue = 'F';
+				$green = 'F';
+				break;
+			case 2:
+				$red = 'F';
+				$blue = 'T';
+				$green = 'F';
+				break;
+			case 3:
+				$red = 'F';
+				$blue = 'F';
+				$green = 'T';
+				break;
+			default:
+				$red = 'F';
+				$blue = 'F';
+				$green = 'F';
+				break;
+		}
+        $lights->bind_param("isss", $uID, $red, $blue, $green);
+        $lights->execute();
 		echo "<script>window.close();</script>";
 	} else {
 		echo "Could not create that User";
