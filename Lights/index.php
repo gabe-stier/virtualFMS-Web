@@ -36,17 +36,17 @@
     function red() {
         print "<label>Red: </label>
 			<input type='checkbox' name='red' id='red'></div>";
-                    guid++;
+                    $guid++;
     }
     function blue() {
         print "<label>Blue: </label>
 			<input type='checkbox' name='blue' id='blue'></div>";
-                    guid++;
+                    $guid++;
     }
     function green() {
         print "<label>Green: </label>
 			<input type='checkbox' name='green' id='green'></div>";
-                    guid++;
+                    $guid++;
     }
 ?>
 
