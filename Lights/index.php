@@ -2,7 +2,6 @@
 	session_start();
 	$dir = '/var/protected';
 	$me = "<script>alert('test')</script>";
-    $guid = 0;
     $gname;
 
 	function testSessionId() {
@@ -12,13 +11,8 @@
 		return 0;
 	    }
 	}
-    function openLoginWindow() {
-	   window.open('../VFMS/login.html', '_blank', 'height=400,width=400');
-    }
-    function openSignUpWindow() {
-        window.open('../VFMS/signup.html', '_blank', 'height=400,width=400');
-    }
-    function displayGroup() {
+    /*
+	function displayGroup() {
         switch($guid) {
             case 1:
                 $gname = "User";
@@ -32,22 +26,7 @@
             default:
                 $gname = "Not Defined";
         }
-    }
-    function red() {
-        print "<label>Red: </label>
-			<input type='checkbox' name='red' id='red'>";
-                    $guid++;
-    }
-    function blue() {
-        print "<label>Blue: </label>
-			<input type='checkbox' name='blue' id='blue'>";
-                    $guid++;
-    }
-    function green() {
-        print "<label>Green: </label>
-			<input type='checkbox' name='green' id='green'>";
-                    $guid++;
-    }
+    }*/
 ?>
 
 <html>
@@ -64,6 +43,14 @@
 					this.classList.toggle("caret-down");
 				});
 			}
+		}
+
+		function openLoginWindow() {
+			window.open('../VFMS/login.html', '_blank', 'height=400,width=400');
+		}
+
+		function openSignUpWindow() {
+			window.open('../VFMS/signup.html', '_blank', 'height=400,width=400');
 		}
 
 	</script>
@@ -102,33 +89,34 @@
 		?>
 		<form target="lights" method="get">
 			<div class="row justify-content-center">
-				<?php	if (isset($_SESSION['red'])) { ?>
+				<?php	if ($_SESSION['red'] == 'T') { ?>
 				<div class="col-sm-1">
+
+					<label>Red: </label>
+					<input type='checkbox' name='red' id='red'>
 					<?php
-							red();
 						}
 					?>
 				</div>
 				<?php
-						if (isset($_SESSION['blue'])) {
+						if ($_SESSION['blue'] == 'T') {
 					?>
 				<div class="col-sm-1">
+					<label>Blue: </label>
+					<input type='checkbox' name='blue' id='blue'>
 					<?php
-							blue();
 						}
 					?>
 				</div>
 				<?php
-						if (isset($_SESSION['green'])) {
+						if ($_SESSION['green'] == 'T') {
 					?>
 				<div class="col-sm-1">
-					<?php
-							green(); 
+					<label>Green: </label>
+					<input type='checkbox' name='green' id='green'> <?php
 						}
-					?>
-				</div>
-				<?php
-							displayGroup(guid);?>
+					?> </div> <?php
+				//			displayGroup(guid);?>
 				<center>
 					<!--    <input class="btn btn-secondary" type="submit" placeholder="Submit"> -->
 					<input class="btn btn-secondary" type="submit" placeholder="Submit" onclick="setIframeSrc(); return false;">
@@ -152,8 +140,8 @@
 						}
 
 					</script>
-				</center>
-			</div>
+					</center>
+				</div>
 		</form>
 		<center><iframe name='lights' id='lights' src='http://192.168.137.145/' style='border: none; font-family: "Courier New", monospace;'></iframe></center><?php
 						} else { 
