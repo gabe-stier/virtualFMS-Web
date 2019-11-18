@@ -86,9 +86,14 @@
 	<div title="Files">
 		<?php 
 			if (testSessionId() != 0) { ?>
-				<ul id="treeFile" onclick="labels()">
-					<?=files($dir); ?>
-				</ul>
+				<div style="padding-top 10px; padding-right: 15px; padding-left: 15px;">
+                                        <form action='upload.php' method='post'>
+                                                <button class='btn btn-primary' type='submit'>Upload</button>
+                                        </form>
+                                        <ul id="treeFile" onclick="labels()">
+                                                <?=files($dir); ?>
+                                        </ul>
+                                </div>
 		<?php
 			} else {
 		?>
