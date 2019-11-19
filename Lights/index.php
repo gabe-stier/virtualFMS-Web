@@ -1,9 +1,9 @@
-<?php
+<?php 
         session_start();
         var_dump($_SESSION);
         $dir = '/var/protected';
         $me = "<script>alert('test')</script>";
-    $gname;
+	$gname;
 
         function testSessionId() {
             if (isset($_SESSION['sesID'])) {
@@ -61,7 +61,7 @@
                         <h1>Light Change</h1>
                 </center>
                 <br>
-                <h3 style="padding-top: 100px;padding-left: 100px;">Your Privilege Level: <?php echo $name ?></h3>
+        <!--        <h3 style="padding-top: 100px;padding-left: 100px;">Your Privilege Level: <?php echo $name ?></h3> -->
 
                 <div class="row justify-content-center">
                         <?php
@@ -149,19 +149,7 @@
 
                 <?php
                                                 }
-                                        ?>
-                <!--     <form action="http://192.168.0.19" method="get"> -->
-                <!--     <form action="http://192.168.137.178 method="get"> -->
-
-                <!--
-                    <div class="col-sm-1"><label>Red: </label>
-                        <input type="checkbox" name="red" id="red"></div>
-                    <div class="col-sm-1"><label>Blue: </label>
-                <input type="checkbox" name="blue" id="blue"></div>
-                    <div class="col-sm-1"><label>Green: </label>
-                        <input type="checkbox" name="green" id="green"></div><br>
--->
-
+                ?>
 
         </div>
 </body>
