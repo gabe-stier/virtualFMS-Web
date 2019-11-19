@@ -1,12 +1,18 @@
-<?php
+<?php 
 	session_start();
 	$dir = '/var/protected';
 	$me = "<script>alert('test')</script>";
 	function files($loc) {
 	    $me = "<script>alert(\'test\')</script>";
 	    foreach (new DirectoryIterator($loc) as $file) if ($file->isFile()) {
-		print "<li>" . $file->getFilename() . "\t" . "<form action='download.php' method='post'><input type='hidden' name='filename' value='" . $file->getFilename() . "'><input type='hidden' name='file' value='" . $file->getPathname() . "'><button class='btn btn-primary' type='submit'>Download</button></form> " .
-		"</li>\n";
+		print "<li>" . $file->getFilename() . "\t";
+		if(canDownload()){
+			print "<form action='download.php' method='post'>".
+				"<input type='hidden' name='filename' value='".$file->getFilename() . "'>".
+				"<input type='hidden' name='file' value='".$file->getPathname() . "'>".
+				"<button class='btn btn-primary' type='submit'>Download</button></form>";
+		}
+		print "</li>\n";
 	    } else if ($file != '..' && $file != '.') {
 		print "<li><span class=\"caret\">" . $file->getFilename() . "</span><ul class=\"nested\">";
 		files($file->getPathname());
@@ -20,6 +26,28 @@
 		return 0;
 	    }
 	}
+	function canUpload(){
+	    if (isset($_SESSION['upload'])){
+		if($_SESSION['upload'] == 'T'){
+			return 1;
+		} else {
+			return 0;
+		}
+	    } else {
+		return 0;
+	    }
+	}
+        function canDownload(){
+            if (isset($_SESSION['download'])){
+                if($_SESSION['download'] == 'T'){
+                        return 1;
+                } else {
+                        return 0;
+                }
+            } else {
+                return 0;
+            }
+        }
 ?>
 
 <html>
@@ -73,10 +101,10 @@
 			<?php
 				}
 			?>
-			
+
 			<div class="col-sm-2"><button class="btn btn-dark" onclick="window.location.href='../Calculator/'">Calculator</button></div>
             		<div class="col-sm-2"><button class="btn btn-warning" onclick="window.location.href='../Lights/'">Light Controller</button></div>
-		
+
 		</div>
 	</div>
 	<hr>
@@ -84,11 +112,22 @@
 
 <body>
 	<div title="Files">
-		<?php 
+		<?php
 			if (testSessionId() != 0) { ?>
-				<ul id="treeFile" onclick="labels()">
-					<?=files($dir); ?>
-				</ul>
+				<div style="padding-top 10px; padding-right: 15px; padding-left: 15px;">
+					<?php
+						if (canUpload()){ 
+					 ?>
+					<form action='upload.php' method='post'>
+	                                        <button class='btn btn-primary' type='submit'>Upload</button>
+	                                </form> 
+					<?php
+ 						 }
+					 ?>
+					<ul id="treeFile" onclick="labels()"> 
+						<?= files($dir) ?>
+					</ul>
+				</div>
 		<?php
 			} else {
 		?>
