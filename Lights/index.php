@@ -94,7 +94,7 @@
                                         <label>Red: </label>
                                         <input type='checkbox' name='red' id='red'>
                                         <?php
-                                                }
+                                               }
                                         ?>
                                 </div>
                                 <?php
@@ -121,28 +121,35 @@
                                         <input class="btn btn-secondary" type="submit" placeholder="Submit" onclick="setIframeSrc(); return false;">
                                         <script>
                                                 function setIframeSrc() {
-                                                        if (document.getElementById('red').checked)
-                                                                var red = 'on';
-                                                        else
-                                                                var red = 'off';
+                                                      	var red = 'off';
+							var blue = 'off';
+							var green = 'off';
+					//		alert(document.getElementById("red").checked + '/n' + document.getElementById("blue"));
 
+                                	                if(document.getElementById('red') != null)
+							if (document.getElementById("red").checked)
+                                                                red = 'on';
+                                                        else
+                                                                red = 'off';
+							if(document.getElementById('blue') != null)
                                                         if (document.getElementById('blue').checked)
-                                                                var blue = 'on';
+                                                                blue = 'on';
                                                         else
-                                                                var blue = 'off';
-
+                                                                blue = 'off';
+ 
+                                                    if(document.getElementById('green') != null)
                                                         if (document.getElementById('green').checked)
-                                                                var green = 'on';
+                                                                green = 'on';
                                                         else
-                                                                var green = 'off';
-                                                        document.getElementById('lights').src = 'http://192.168.137.145/?red=' + red + '&blue=' + blue + '&green=' + green + ' ';
+                                                                green = 'off';/**/
+                                                        document.getElementById('lights').src = 'http://192.168.137.44/?red=' + red + '&blue=' + blue + '&green=' + green + ' ';
                                                 }
 
                                         </script>
                                         </center>
                                 </div>
                 </form>
-                <center><iframe name='lights' id='lights' src='http://192.168.137.145/' style='border: none; font-family: "Courier New", monospace;'></iframe></center><?php
+                <center><iframe name='lights' id='lights' src='http://192.168.137.44/' style='border: none; font-family: "Courier New", monospace;'></iframe></center><?php
                                                 } else {
                                         ?>
                 <p> You can not access the light controller while you are not logged in! </p>
