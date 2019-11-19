@@ -118,9 +118,7 @@
 					<?php
 						if (canUpload()){ 
 					 ?>
-					<form action='upload.php' method='post'>
-	                                        <button class='btn btn-primary' type='submit'>Upload</button>
-	                                </form> 
+	                                        <button class='btn btn-primary' type='submit' onclick="window.open('upload.html','_blank','height=400,width=400');" >Upload</button>
 					<?php
  						 }
 					 ?>
