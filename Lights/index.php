@@ -1,6 +1,5 @@
 <?php 
         session_start();
-        var_dump($_SESSION);
         $dir = '/var/protected';
         $me = "<script>alert('test')</script>";
 	$gname;
@@ -75,32 +74,30 @@
                                 <div class="col-sm-1">
 
                                         <label>Red: </label>
-                                        <input type='checkbox' name='red' id='red'>
+                                        <input type='checkbox' name='red' id='red'></div><br>
                                         <?php
                                                }
                                         ?>
-                                </div>
                                 <?php
                                                 if ($_SESSION['blue'] == 'T') {
                                         ?>
                                 <div class="col-sm-1">
                                         <label>Blue: </label>
-                                        <input type='checkbox' name='blue' id='blue'>
+                                        <input type='checkbox' name='blue' id='blue'></div><br>
                                         <?php
                                                 }
                                         ?>
-                                </div>
                                 <?php
                                                 if ($_SESSION['green'] == 'T') {
                                         ?>
                                 <div class="col-sm-1">
                                         <label>Green: </label>
-                                        <input type='checkbox' name='green' id='green'> <?php
+                                        <input type='checkbox' name='green' id='green'></div> <br><?php
                                                 }
-                                        ?> </div> 
-						<center>
+                                        ?>
+						<center><br>
                                         <input class="btn btn-secondary" type="submit" placeholder="Submit" onclick="setIframeSrc(); return false;">
-                                        <script>
+	<br>                                        <script>
                                                 function setIframeSrc() {
                                                       	var red = 'off';
 							var blue = 'off';
@@ -122,14 +119,14 @@
 									green = 'on';
 								else
 									green = 'off';
-                                                        document.getElementById('lights').src = 'http://192.168.137.44/?red=' + red + '&blue=' + blue + '&green=' + green + ' ';
+                                                        document.getElementById('lights').src = 'http://192.168.137.182/?red=' + red + '&blue=' + blue + '&green=' + green + ' ';
                                                 }
 
                                         </script>
                                         </center>
                                 </div>
                 </form>
-                <center><iframe name='lights' id='lights' src='http://192.168.137.44/' style='border: none; font-family: "Courier New", monospace;'></iframe></center><?php
+                <center><iframe name='lights' id='lights' src='http://192.168.137.182/' style='border: none; font-family: "Courier New", monospace;'></iframe></center><?php
                                                 } else {
                                         ?>
                 <p> You can not access the light controller while you are not logged in! </p>
