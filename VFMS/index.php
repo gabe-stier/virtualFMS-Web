@@ -63,9 +63,6 @@ function canDownload()
 <link rel="stylesheet" href="./index.css">
 <link rel="stylesheet" href="bootstrap-4.3.1-dist/css/bootstrap.min.css">
 <script type="text/javascript">
-		function readFile() {
-			window.open('readfile.php', '_blank', 'height=400,width=400');
-		}
 
 		function openLoginWindow() {
 			window.open('login.html', '_blank', 'height=400,width=400');
