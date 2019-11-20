@@ -1,4 +1,5 @@
 <?php
+include 'logging.php';
 session_start();
 if (!empty($_SESSION)) {
     $fileName = $_POST['filename'];
@@ -12,6 +13,7 @@ if (!empty($_SESSION)) {
         header('Pragma: public');
         header('Content-Length: ' . filesize($file));
         readfile($file);
+	wh_log("User ID:\t".$_SESSION['sesID']."\nFile:\t\t".basename($file),"Download");
         exit;
     }
 } else {

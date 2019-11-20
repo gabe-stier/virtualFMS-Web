@@ -1,14 +1,15 @@
 <?php
+include 'logging.php';
+session_start();
 $dir = "/var/protected/";
 $file = $dir.basename($_FILES['fileToUpload']['name']);
-var_dump($_FILES);
-echo $file;
 $tempFile = $file;
 function upload(){
 	if(isset($_POST['submit'])) {
 		$tempfile =	fileName(0, "/var/protected/".basename($_FILES["fileToUpload"]["name"]));
 		if(move_uploaded_file($_FILES["fileToUpload"]["tmp_name"],$tempfile)){
 //			print "File has been uploaded";
+			wh_log("User id: \t".$_SESSION['sesID']."\nFile:\t\t".$tempfile, "File Upload");
 			echo "<script>window.close();</script>";
 		}else{
 			print "Could not upload the file";

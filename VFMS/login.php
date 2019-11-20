@@ -1,4 +1,5 @@
 <?php
+	include 'logging.php'	;
     if (!empty($_POST)) {
         session_start();
         if (isset($_POST['username']) && isset($_POST['loginPwd'])) {
@@ -18,6 +19,7 @@
                         $_SESSION['result'] = true;
                         $_SESSION['resultCode'] = 1;
                         $_SESSION['sesID'] = $uid;
+			wh_log("User ID:\t".$uid."\nUsername:\t".$usr, "Login");
                         header('location: userPerms.php');
                     } else {
                         session_destroy();

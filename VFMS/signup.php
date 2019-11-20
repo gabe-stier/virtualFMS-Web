@@ -1,4 +1,5 @@
 <?php
+include 'logging.php';
 	$conn = new mysqli('localhost', 'vfmsUSER', '?uvl=1Crod', 'VFMS');
 	$usr = $_POST['username'];
 	$name = $_POST['name'];
@@ -20,6 +21,8 @@
 		mysqli_stmt_bind_result($idStmt, $uID);
 		mysqli_stmt_fetch($idStmt);
 		echo $uID;
+		wh_log("Username: \t".$usr. "\nUser ID:\t". $uID, "User Signup");
+	echo "Bitch";
 		$perms = $conn->prepare("INSERT INTO VFMS.PERMS (idUser, download, upload) VALUES (?, 'T', 'F')");
 		$false = "F";
 		$true = "T";
