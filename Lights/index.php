@@ -92,12 +92,12 @@
                                         ?>
                                 <div class="col-sm-1">
                                         <label>Green: </label>
-                                        <input type='checkbox' name='green' id='green'></div> <br><?php
+                                        <input type='checkbox' name='green' id='green'></div><?php
                                                 }
-                                        ?>
-						<center><br>
+                                        ?></div>
+						<center>
                                         <input class="btn btn-secondary" type="submit" placeholder="Submit" onclick="setIframeSrc(); return false;">
-	<br>                                        <script>
+                                <script>
                                                 function setIframeSrc() {
                                                       	var red = 'off';
 							var blue = 'off';
@@ -119,14 +119,16 @@
 									green = 'on';
 								else
 									green = 'off';
-                                                        document.getElementById('lights').src = 'http://192.168.137.182/?red=' + red + '&blue=' + blue + '&green=' + green + ' ';
+							<! -- Change the IP address in the following line -->
+                                                        document.getElementById('lights').src = 'http://192.168.137.171/?red=' + red + '&blue=' + blue + '&green=' + green + ' ';
                                                 }
 
                                         </script>
                                         </center>
                                 </div>
                 </form>
-                <center><iframe name='lights' id='lights' src='http://192.168.137.182/' style='border: none; font-family: "Courier New", monospace;'></iframe></center><?php
+		<!-- Change the src IP address in the following line -->
+                <center><iframe name='lights' id='lights' src='http://192.168.137.171/' style='border: none; font-family: "Courier New", monospace;'></iframe></center><?php
                                                 } else {
                                         ?>
                 <p> You can not access the light controller while you are not logged in! </p>
