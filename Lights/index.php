@@ -12,21 +12,6 @@
                 return 0;
             }
         }
-/*    function displayGroup() {
-        switch($guid) {
-            case 1:
-                $gname = "User";
-                break;
-            case 2:
-                $gname = "System Admin";
-                break;
-            case 3:
-                $gname = "Domain Admin";
-                break;
-            default:
-                $gname = "Not Defined";
-        }
-    }*/
 ?>
 
 <html>
@@ -61,8 +46,6 @@
                         <h1>Light Change</h1>
                 </center>
                 <br>
-        <!--        <h3 style="padding-top: 100px;padding-left: 100px;">Your Privilege Level: <?php echo $name ?></h3> -->
-
                 <div class="row justify-content-center">
                         <?php
                                 if (testSessionId() == 0) { ?>
@@ -114,34 +97,31 @@
                                         <label>Green: </label>
                                         <input type='checkbox' name='green' id='green'> <?php
                                                 }
-                                        ?> </div> <?php
-                                                        //displayGroup(guid);?>
-							<center>
-                                        <!--    <input class="btn btn-secondary" type="submit" placeholder="Submit"> -->
+                                        ?> </div> 
+						<center>
                                         <input class="btn btn-secondary" type="submit" placeholder="Submit" onclick="setIframeSrc(); return false;">
                                         <script>
                                                 function setIframeSrc() {
                                                       	var red = 'off';
 							var blue = 'off';
 							var green = 'off';
-					//		alert(document.getElementById("red").checked + '/n' + document.getElementById("blue"));
-
+							
                                 	                if(document.getElementById('red') != null)
-							if (document.getElementById("red").checked)
-                                                                red = 'on';
-                                                        else
-                                                                red = 'off';
+								if (document.getElementById("red").checked)
+									red = 'on';
+								else
+									red = 'off';
 							if(document.getElementById('blue') != null)
-                                                        if (document.getElementById('blue').checked)
-                                                                blue = 'on';
-                                                        else
-                                                                blue = 'off';
- 
-                                                    if(document.getElementById('green') != null)
-                                                        if (document.getElementById('green').checked)
-                                                                green = 'on';
-                                                        else
-                                                                green = 'off';/**/
+								if (document.getElementById('blue').checked)
+									blue = 'on';
+								else
+									blue = 'off';
+
+							if(document.getElementById('green') != null)
+								if (document.getElementById('green').checked)
+									green = 'on';
+								else
+									green = 'off';
                                                         document.getElementById('lights').src = 'http://192.168.137.44/?red=' + red + '&blue=' + blue + '&green=' + green + ' ';
                                                 }
 
