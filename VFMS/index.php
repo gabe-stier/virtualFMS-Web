@@ -1,62 +1,68 @@
-<?php 
-	session_start();
-	$dir = '/var/protected';
-	$me = "<script>alert('test')</script>";
-	function files($loc) {
-	    $me = "<script>alert(\'test\')</script>";
-	    foreach (new DirectoryIterator($loc) as $file) if ($file->isFile()) {
-		print "<li>" . $file->getFilename() . "\t";
-		if(canDownload()){
-			print "<form action='download.php' method='post'>".
-				"<input type='hidden' name='filename' value='".$file->getFilename() . "'>".
-				"<input type='hidden' name='file' value='".$file->getPathname() . "'>".
-				"<button class='btn btn-primary' type='submit'>Download</button></form>";
-		}
-		print "</li>\n";
-	    } else if ($file != '..' && $file != '.') {
-		print "<li><span class=\"caret\">" . $file->getFilename() . "</span><ul class=\"nested\">";
-		files($file->getPathname());
-		print "</ul></li>";
-	    }
-	}
-	function testSessionId() {
-	    if (isset($_SESSION['sesID'])) {
-		return 1;
-	    } else {
-		return 0;
-	    }
-	}
-	function canUpload(){
-	    if (isset($_SESSION['upload'])){
-		if($_SESSION['upload'] == 'T'){
-			return 1;
-		} else {
-			return 0;
-		}
-	    } else {
-		return 0;
-	    }
-	}
-        function canDownload(){
-            if (isset($_SESSION['download'])){
-                if($_SESSION['download'] == 'T'){
-                        return 1;
-                } else {
-                        return 0;
-                }
-            } else {
-                return 0;
+<?php
+session_start();
+$dir = '/var/protected';
+$me = "<script>alert('test')</script>";
+
+function files($loc)
+{
+    $me = "<script>alert(\'test\')</script>";
+    foreach (new DirectoryIterator($loc) as $file)
+        if ($file->isFile()) {
+            print "<li>" . $file->getFilename() . "\t";
+            if (canDownload()) {
+                print "<form action='download.php' method='post'>" . "<input type='hidden' name='filename' value='" . $file->getFilename() . "'>" . "<input type='hidden' name='file' value='" . $file->getPathname() . "'>" . "<button class='btn btn-primary' type='submit'>Download</button></form>";
             }
+            print "</li>\n";
+        } else if ($file != '..' && $file != '.') {
+            print "<li><span class=\"caret\">" . $file->getFilename() . "</span><ul class=\"nested\">";
+            files($file->getPathname());
+            print "</ul></li>";
         }
+}
+
+function testSessionId()
+{
+    if (isset($_SESSION['sesID'])) {
+        return 1;
+    } else {
+        return 0;
+    }
+}
+
+function canUpload()
+{
+    if (isset($_SESSION['upload'])) {
+        if ($_SESSION['upload'] == 'T') {
+            return 1;
+        } else {
+            return 0;
+        }
+    } else {
+        return 0;
+    }
+}
+
+function canDownload()
+{
+    if (isset($_SESSION['download'])) {
+        if ($_SESSION['download'] == 'T') {
+            return 1;
+        } else {
+            return 0;
+        }
+    } else {
+        return 0;
+    }
+}
 ?>
 
 <html>
 
 <head>
-	<title>Virtual File Management System</title>
-	<link rel="stylesheet" href="./index.css">
-	<link rel="stylesheet" href="bootstrap-4.3.1-dist/css/bootstrap.min.css">
-	<script type="text/javascript">
+<title>Virtual File Management System</title>
+<link rel="stylesheet" href="./index.css">
+<link rel="stylesheet" href="bootstrap-4.3.1-dist/css/bootstrap.min.css">
+<script type="text/javascript">
 		function readFile() {
 			window.open('readfile.php', '_blank', 'height=400,width=400');
 		}
@@ -91,19 +97,31 @@
 		<hr>
 		<div class="row justify-content-center">
 			<?php
-				if (testSessionId() == 0) { ?>
+if (testSessionId() == 0) {
+    ?>
 					<div class="col-sm-2">
-					<button class="btn btn-success" onclick="openLoginWindow()">Login</button></div>
-					<div class="col-sm-2"><button class="btn btn-secondary" onclick="openSignUpWindow()">Sign Up</button></div><?php
-				} else {
-			?>
-					<button class="btn btn-danger" onclick="window.location.href='logout.php'">Logout</button>
+				<button class="btn btn-success" onclick="openLoginWindow()">Login</button>
+			</div>
+			<div class="col-sm-2">
+				<button class="btn btn-secondary" onclick="openSignUpWindow()">Sign
+					Up</button>
+			</div><?php
+} else {
+    ?>
+					<button class="btn btn-danger"
+				onclick="window.location.href='logout.php'">Logout</button>
 			<?php
-				}
-			?>
+}
+?>
 
-			<div class="col-sm-2"><button class="btn btn-dark" onclick="window.location.href='../Calculator/'">Calculator</button></div>
-            		<div class="col-sm-2"><button class="btn btn-warning" onclick="window.location.href='../Lights/'">Light Controller</button></div>
+			<div class="col-sm-2">
+				<button class="btn btn-dark"
+					onclick="window.location.href='../Calculator/'">Calculator</button>
+			</div>
+			<div class="col-sm-2">
+				<button class="btn btn-warning"
+					onclick="window.location.href='../Lights/'">Light Controller</button>
+			</div>
 
 		</div>
 	</div>
@@ -113,27 +131,30 @@
 <body>
 	<div title="Files">
 		<?php
-			if (testSessionId() != 0) { ?>
-				<div style="padding-top 10px; padding-right: 15px; padding-left: 15px;">
+if (testSessionId() != 0) {
+    ?>
+				<div style="padding-right: 15px; padding-left: 15px;">
 					<?php
-						if (canUpload()){ 
-					 ?>
-	                                        <button class='btn btn-primary' type='submit' onclick="window.open('upload.html','_blank','height=400,width=400');" >Upload</button>
+    if (canUpload()) {
+        ?>
+	                                        <button class='btn btn-primary'
+				type='submit'
+				onclick="window.open('upload.html','_blank','height=400,width=400');">Upload</button>
 					<?php
- 						 }
-					 ?>
+    }
+    ?>
 					<ul id="treeFile" onclick="labels()"> 
 						<?= files($dir) ?>
 					</ul>
-				</div>
+		</div>
 
 		<?php
-			} else {
-		?>
-			<p> You can not access the file system while you are not logged in! </p>
+} else {
+    ?>
+			<p>You can not access the file system while you are not logged in!</p>
 		<?php
-			}
-		?>
+}
+?>
 	</div>
 </body>
 </html>

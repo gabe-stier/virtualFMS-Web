@@ -1,7 +1,7 @@
 <?php
 include 'logging.php';
 session_start();
-if (!empty($_SESSION)) {
+if (! empty($_SESSION)) {
     $fileName = $_POST['filename'];
     $file = $_POST['file'];
     if (file_exists($file)) {
@@ -13,8 +13,8 @@ if (!empty($_SESSION)) {
         header('Pragma: public');
         header('Content-Length: ' . filesize($file));
         readfile($file);
-	wh_log("User ID:\t".$_SESSION['sesID']."\nFile:\t\t".basename($file),"Download");
-        exit;
+        wh_log("User ID:\t" . $_SESSION['sesID'] . "\nFile:\t\t" . basename($file), "Download");
+        exit();
     }
 } else {
     echo "Can't not access file";
